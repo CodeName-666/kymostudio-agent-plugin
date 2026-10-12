@@ -1,30 +1,46 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kymostudio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bediene die lokale KymoStudio-Desktop-Instanz über MCP mit Vorrang für Messwerterfassung und Trace-Aufzeichnung.",
   "author": {
-    "name": "Christof Seidel"
+    "name": "Christof Seidel",
+    "email": "kontakt@kymotrace.de",
+    "url": "https://github.com/CodeName-666"
   },
   "license": "GPL-3.0-only",
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "KymoStudio",
-        "shortDescription": "Messquellen, Diagramme und Traces lokal steuern",
-        "longDescription": "Arbeitsabläufe für die bestehende Desktop-Instanz: Verbindungen, Messwerte, Workspace, Capture/Replay und Exporte. Konfiguration über lokalen stdio-Adapter oder Streamable HTTP.",
+        "shortDescription": "Local measurement workflows",
+        "longDescription": "Operating guidance for a separately installed local KymoStudio desktop and MCP adapter. Discover measurement sources, configure charts and workspaces, follow capture/replay and export jobs, and respect acquisition limits. Requires a running MCP-enabled KymoStudio instance and a separately configured local connection. Intended for local Claude Code and Codex clients. Core workflows require desktop application access; cloud-only clients need a separately supported connection architecture. Measurement results returned through the client may be shared with its model provider.",
         "developerName": "Christof Seidel",
         "category": "Developer Tools",
         "capabilities": [
-          "Read",
-          "Write"
+          "Workflow guidance"
         ],
+        "websiteURL": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+        "supportURL": "https://github.com/CodeName-666/kymostudio-agent-plugin/issues",
+        "privacyPolicyURL": "https://github.com/CodeName-666/kymostudio-agent-plugin/blob/feat/official-directory-submission/plugins/kymostudio/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/CodeName-666/kymostudio-agent-plugin/blob/main/LICENSE",
+        "composerIcon": "./assets/logo.svg",
+        "logo": "./assets/logo.svg",
         "defaultPrompt": [
-          "Prüfe meine laufende KymoStudio-Instanz und unterstütze mich bei Messwerterfassung und Trace-Aufzeichnung."
+          "Help me connect my local KymoStudio installation.",
+          "Check my measurement sources and capture status.",
+          "Export retained samples to my granted local folder."
         ]
       }
     }
   },
   "homepage": "https://github.com/CodeName-666/kymostudio-agent-plugin",
-  "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin"
+  "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+  "keywords": [
+    "kymostudio",
+    "measurement",
+    "trace",
+    "capture",
+    "mcp"
+  ]
 }

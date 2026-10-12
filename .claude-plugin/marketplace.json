@@ -1,0 +1,15 @@
+{
+  "name": "kymostudio-agent-plugin",
+  "description": "Lokale KymoStudio-Steuerung mit Bedien-Skill und MCP-Adapter.",
+  "owner": {
+    "name": "Christof Seidel"
+  },
+  "plugins": [
+    {
+      "name": "kymostudio",
+      "source": "./plugins/kymostudio",
+      "description": "KymoStudio über lokalen MCP-Adapter und Bedien-Skill verwenden.",
+      "version": "0.1.0"
+    }
+  ]
+}

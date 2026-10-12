@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kymostudio",
+  "version": "0.1.0",
+  "description": "Bediene die lokale KymoStudio-Desktop-Instanz über MCP mit Vorrang für Messwerterfassung und Trace-Aufzeichnung.",
+  "author": {
+    "name": "Christof Seidel"
+  },
+  "license": "GPL-3.0-only",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "KymoStudio",
+        "shortDescription": "Messquellen, Diagramme und Traces lokal steuern",
+        "longDescription": "Arbeitsabläufe für die bestehende Desktop-Instanz: Verbindungen, Messwerte, Workspace, Capture/Replay und Exporte. Konfiguration über lokalen stdio-Adapter oder Streamable HTTP.",
+        "developerName": "Christof Seidel",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Prüfe meine laufende KymoStudio-Instanz und unterstütze mich bei Messwerterfassung und Trace-Aufzeichnung."
+        ]
+      }
+    }
+  },
+  "homepage": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+  "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin"
+}

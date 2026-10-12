@@ -1,0 +1,23 @@
+{
+  "name": "kymostudio",
+  "version": "0.1.0",
+  "description": "Lokale KymoStudio-Bedienung über MCP mit Vorrang für verlustfreie Erfassung.",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "KymoStudio",
+    "shortDescription": "Messquellen, Diagramme und Traces lokal steuern",
+    "longDescription": "Bediene die laufende Desktop-Instanz über MCP; respektiere Capture-, Job- und Rohdatenlimits.",
+    "developerName": "Christof Seidel",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Prüfe meine laufende KymoStudio-Instanz und unterstütze mich bei Messung und Trace-Aufzeichnung."
+    ]
+  },
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+  "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin"
+}

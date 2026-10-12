@@ -1,0 +1,20 @@
+{
+  "name": "kymostudio-agent-plugin",
+  "interface": {
+    "displayName": "KymoStudio lokal"
+  },
+  "plugins": [
+    {
+      "name": "kymostudio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/kymostudio"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

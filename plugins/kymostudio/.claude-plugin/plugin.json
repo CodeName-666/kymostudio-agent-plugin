@@ -1,0 +1,11 @@
+{
+  "name": "kymostudio",
+  "version": "0.1.0",
+  "description": "Bediene die laufende lokale KymoStudio-Instanz mit Vorrang für Messwerterfassung und Trace-Aufzeichnung.",
+  "author": {
+    "name": "Christof Seidel"
+  },
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+  "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin"
+}

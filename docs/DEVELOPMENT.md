@@ -42,3 +42,10 @@ for installed clients to receive changed package contents reliably.
 This repository tracks the operating contract for KymoStudio MCP. Server and
 logging/writer changes belong to the KymoStudio project. Do not copy the desktop
 backend or private measurement/configuration files into this repository.
+
+Candidate 0.1.1 adds public-listing metadata, bundled artwork, data handling and
+support pages, plus ten submission regression checks (24 tests in total).
+Run `python tools/check_submission.py` for structural checks. Its success only
+means the checked package constraints pass; local application eligibility,
+account verification and provider scans remain separate requirements. See
+[submission preparation](submission/README.md) for the actual review routes.

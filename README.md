@@ -87,6 +87,11 @@ computer. They are ignored by Git. Public release archives are created without
 [Development and release](docs/DEVELOPMENT.md) ·
 [Skill](plugins/kymostudio/skills/kymostudio-mcp/SKILL.md)
 
+[Official directory submission preparation](docs/submission/README.md) documents
+the candidate metadata, review scenarios and the required provider/account checks.
+The local application prerequisite requires OpenAI eligibility confirmation.
+Prepared files and successful local checks do not imply directory approval.
+
 ## Tests
 
 No test dependencies are required:

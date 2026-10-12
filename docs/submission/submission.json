@@ -1,0 +1,62 @@
+{
+  "prepared_on": "2026-10-12",
+  "candidate_version": "0.1.1",
+  "submitted": false,
+  "publisher": {
+    "name": "Christof Seidel",
+    "contact_email": "kontakt@kymotrace.de",
+    "identity_verified": null
+  },
+  "package": {
+    "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin",
+    "plugin_path": "plugins/kymostudio",
+    "branch": "feat/official-directory-submission",
+    "archive": "kymostudio-plugin.zip",
+    "bundled_mcp_servers": 0,
+    "requires_external_local_mcp": true,
+    "requires_local_desktop": true,
+    "reviewer_app_download_url": null
+  },
+  "anthropic": {
+    "portal_url": "https://claude.ai/directory/manage",
+    "submission_type": "Plugin bundle",
+    "repository": "CodeName-666/kymostudio-agent-plugin",
+    "plugin_path": "plugins/kymostudio",
+    "tracked_branch": "feat/official-directory-submission",
+    "plan_and_role_checked": false,
+    "github_connected_in_owning_organization": false,
+    "portal_validation": "not_performed",
+    "official_marketplace_route": "Ask Anthropic partner contact; separate from directory portal",
+    "source_url": "https://code.claude.com/docs/en/plugins/publish"
+  },
+  "openai": {
+    "portal_url": "https://platform.openai.com/plugins",
+    "eligibility": "requires_local_application_confirmation",
+    "local_support_confirmed": false,
+    "identity_and_organization_access_checked": false,
+    "portal_validation": "not_performed",
+    "submission_type": null,
+    "reason": "Core workflow requires the running local desktop and its separately configured MCP server; package shape alone does not establish skills-only eligibility.",
+    "source_url": "https://developers.openai.com/plugins/guides/submit-claude-plugin"
+  },
+  "data_handling_drafts": {
+    "reads_personal_data": "The instruction package reads no data itself. When connected, measurements, signal labels and local paths returned to the agent can contain personal data.",
+    "stores_personal_data": "The plugin retains no runtime data. Conversation history, local desktop files and support correspondence have separate retention controls.",
+    "other_data_recipients": "Tool outputs are available to the configured agent client and model provider. The plugin adds no publisher telemetry or outbound service. GitHub handles distribution and public issues.",
+    "retention": "No runtime retention by the plugin; client history follows provider settings, desktop artifacts remain until removed under local configuration.",
+    "support_retention_days": null,
+    "intended_for_under_18": null,
+    "requires_publisher_confirmation": true
+  },
+  "review_scenarios": {
+    "file": "REVIEW.md",
+    "positive": 5,
+    "negative": 3,
+    "agent_execution_status": "proposed_not_run",
+    "video_url": null
+  },
+  "portal_attestations": {
+    "confirmed_by_publisher": false,
+    "instructions": "Publisher completes account-specific compliance attestations in the portal after reviewing the current terms."
+  }
+}

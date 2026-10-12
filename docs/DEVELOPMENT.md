@@ -29,6 +29,10 @@ Initial release checks (2026-10-12): 14 standard-library tests passed locally;
 Claude Code 2.1.286 accepted both manifests with `--strict` and installed the
 marketplace plugin in a disposable configuration directory. Codex CLI 0.162.1
 also installed and enabled the plugin with an isolated `CODEX_HOME`.
+A generated local stdio configuration was exercised against an isolated packaged
+KymoStudio instance: 43 tools discovered, three synthetic signals received,
+sample data read and the test source stopped. This proves the adapter connection
+and basic workflow; it is not a hardware or acquisition-under-load certification.
 
 For a new version update the portable, Claude and Codex manifests and the Claude
 marketplace entry together. Run tests, commit, tag `vX.Y.Z` and create a GitHub

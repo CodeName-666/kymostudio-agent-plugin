@@ -1,5 +1,7 @@
 # KymoStudio Agent Plugin
 
+[![Tests](https://github.com/CodeName-666/kymostudio-agent-plugin/actions/workflows/tests.yml/badge.svg)](https://github.com/CodeName-666/kymostudio-agent-plugin/actions/workflows/tests.yml)
+
 Use **Claude Code** or **Codex** to operate an existing local KymoStudio desktop:
 measurement sources, charts, workspaces, trace capture/replay, and exports.
 
@@ -81,6 +83,7 @@ computer. They are ignored by Git. Public release archives are created without
 `--adapter` and contain no machine-specific connection configuration.
 
 [Deutsche Installationsanleitung](docs/INSTALLATION.md) ·
+[Download releases](https://github.com/CodeName-666/kymostudio-agent-plugin/releases) ·
 [Development and release](docs/DEVELOPMENT.md) ·
 [Skill](plugins/kymostudio/skills/kymostudio-mcp/SKILL.md)
 

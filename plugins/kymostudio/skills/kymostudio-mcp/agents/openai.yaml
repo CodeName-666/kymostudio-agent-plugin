@@ -1,7 +1,11 @@
 interface:
+
   display_name: "KymoStudio MCP"
+
   short_description: "KymoStudio steuern und Messdaten verlustfrei erfassen"
+
   default_prompt: "Nutze $kymostudio-mcp, um den Status meiner laufenden KymoStudio-Instanz zu prüfen und mich bei Messung und Trace-Aufzeichnung zu unterstützen."
+
 
 dependencies:
   tools:

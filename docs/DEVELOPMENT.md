@@ -47,8 +47,9 @@ Candidate 0.1.1 adds public-listing metadata, bundled artwork, data handling and
 support pages, plus ten submission regression checks (24 tests in total).
 0.2.0 follows KymoStudio 2.7: device parameters over the back channel
 (`kymo_parameters`, `kymo_parameter_set`, `kymo_parameter_create`,
-`kymo_parameter_delete`, `kymo_parameters_request`; a succeeded write job is not
-a device confirmation) and opened measurement recordings as `rec<n>-…` signals.
+`kymo_parameter_delete`, `kymo_parameters_request`; a write job succeeds only on a
+device confirmation and fails with `DEVICE_REJECTED` or `DEVICE_NO_ANSWER`
+otherwise) and opened measurement recordings as `rec<n>-…` signals.
 Checked against KymoStudio `integration/2.7` with an ESP32 PI controller.
 Run `python tools/check_submission.py` for structural checks. Its success only
 means the checked package constraints pass; local application eligibility,

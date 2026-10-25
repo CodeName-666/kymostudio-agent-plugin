@@ -69,12 +69,13 @@ kymo_parameters_request({"connection_id":"<Quelle>"})
 kymo_parameters({"connection_id":"<Quelle>"})
 kymo_parameter_set({"connection_id":"<Quelle>","parameter_id":100,"value":1.5})
 kymo_job_get({"job_id":"<Schreibjob>"})
-# Nach succeeded: data.job.result.parameter.status lesen (confirmed/rejected/unconfirmed).
+# succeeded = Gerät bestätigt; failed mit DEVICE_REJECTED / DEVICE_NO_ANSWER = nicht übernommen.
+# data.job.result.parameter enthält in allen Fällen Gerätewert und Status.
 ```
 
 Grenzen (`minimum`/`maximum`) und Einheit stammen aus der Firmware. Bei
-`rejected` den gemeldeten Gerätewert berichten, bei `unconfirmed` nicht als
-übernommen darstellen und nur auf Wunsch erneut senden. Für Firmware ohne
+`DEVICE_REJECTED` den gemeldeten Gerätewert berichten, bei `DEVICE_NO_ANSWER`
+nicht als übernommen darstellen und nur auf Wunsch erneut senden. Für Firmware ohne
 Selbstmeldung legt `kymo_parameter_create` einen Parameter mit eigener ID,
 Name, Einheit und Grenzen an; die Firmware prüft trotzdem jeden Wert.
 

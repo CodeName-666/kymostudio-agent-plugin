@@ -80,11 +80,12 @@ und vollständigen Capture-Abschluss. Textlogs sind ein zusätzlicher Prüfberei
   und Schreibstatus, `kymo_parameters_request` fragt die Liste neu an. Werte nur
   schreiben, wenn der Auftrag es verlangt: Sie ändern sofort das Verhalten des
   realen Geräts (Regler, Antrieb, Heizung). `kymo_parameter_set` prüft die Grenzen
-  vorab (`INVALID_ARGUMENT` bei Überschreitung) und liefert einen Job. **Ein Job mit
-  `state: succeeded` heißt nur, dass das Schreiben abgeschlossen ist;** ob das Gerät
-  den Wert übernommen hat, steht in `result.parameter.status`: `confirmed` (Gerät
-  meldet den Wert), `rejected` (Gerät behält einen anderen Wert, siehe `value`) oder
-  `unconfirmed` (keine Rückmeldung). Nur `confirmed` als Erfolg berichten.
+  vorab (`INVALID_ARGUMENT` bei Überschreitung) und liefert einen Job. Er gelingt
+  (`succeeded`) nur, wenn das Gerät den Wert bestätigt. Sonst scheitert er mit
+  `DEVICE_REJECTED` (Gerät behält einen anderen Wert) oder `DEVICE_NO_ANSWER`
+  (keine Rückmeldung); auch dann steht die Parameterzeile mit Gerätewert unter
+  `result.parameter`. Einen gescheiterten Schreibversuch nicht als übernommen
+  darstellen und nur auf Wunsch wiederholen.
   `kymo_parameter_create` und `kymo_parameter_delete` gelten nur für manuell
   angelegte Parameter (z. B. über CAN, wo die Firmware keine Liste melden kann);
   vom Gerät gemeldete IDs lassen sich weder anlegen noch löschen.

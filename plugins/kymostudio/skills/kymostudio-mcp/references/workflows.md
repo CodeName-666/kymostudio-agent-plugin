@@ -59,6 +59,37 @@ Trace-Session. Schlägt die Veröffentlichung fehl, zeigt der Job einen Fehler;
 die abgeschlossene versteckte `.capture`-Datei bleibt am Zielordner zur Recovery.
 Keine „gespeichert“-Meldung ohne erfolgreichen Abschluss.
 
+## Geräteparameter setzen und Bestätigung prüfen (ab KymoStudio 2.7)
+
+```text
+kymo_connections({})
+kymo_parameters({"connection_id":"<Quelle>"})
+# Leere Liste? Einmal neu anfragen und erneut lesen:
+kymo_parameters_request({"connection_id":"<Quelle>"})
+kymo_parameters({"connection_id":"<Quelle>"})
+kymo_parameter_set({"connection_id":"<Quelle>","parameter_id":100,"value":1.5})
+kymo_job_get({"job_id":"<Schreibjob>"})
+# Nach succeeded: data.job.result.parameter.status lesen (confirmed/rejected/unconfirmed).
+```
+
+Grenzen (`minimum`/`maximum`) und Einheit stammen aus der Firmware. Bei
+`rejected` den gemeldeten Gerätewert berichten, bei `unconfirmed` nicht als
+übernommen darstellen und nur auf Wunsch erneut senden. Für Firmware ohne
+Selbstmeldung legt `kymo_parameter_create` einen Parameter mit eigener ID,
+Name, Einheit und Grenzen an; die Firmware prüft trotzdem jeden Wert.
+
+## Geöffnete Messaufnahme auswerten
+
+```text
+kymo_signals({})
+# Aufnahme-Signale haben IDs wie rec1-<Quelle>_<n> und „(Aufnahme)“ im Namen.
+kymo_statistics({"signal_id":"rec1-<Quelle>_0"})
+kymo_samples({"signal_id":"rec1-<Quelle>_0","start":10.0,"end":11.0,"limit":1000})
+```
+
+Die Statistik eines Aufnahme-Signals umfasst die gesamte Aufnahme. Große
+Bereiche als CSV exportieren statt seitenweise in den Kontext zu laden.
+
 ## Workspace und Replay
 
 ```text
@@ -81,3 +112,5 @@ und `state.eof` prüfen.
 - „Zeichne diese Live-Trace-Session auf und warte beim Stoppen auf den vollständigen Abschluss.“
 - „Exportiere die gehaltenen Messwerte in meinen freigegebenen Ordner und gib den bestätigten Dateipfad aus.“
 - „Analysiere den gespeicherten Trace und zeige Lücken oder unbekannte Clock-Domänen ausdrücklich.“
+- „Setze kp meines PI-Reglers auf 1.5 und berichte, ob das Gerät den Wert bestätigt.“
+- „Werte die geöffnete Messaufnahme aus: Mittelwert und RMS je Signal über die gesamte Aufnahme.“

@@ -1,6 +1,6 @@
 ---
 name: kymostudio-mcp
-description: "Konfiguriere lokale KymoStudio-MCP-Clients und bediene die laufende Desktop-Instanz: Messquellen, Diagramme, Workspace, Trace/Capture/Replay und Exporte. Verwende diesen Skill für die Bedienung und Diagnose über MCP, nicht für Änderungen an KymoStudios Quellcode."
+description: "Konfiguriere lokale KymoStudio-MCP-Clients und bediene die laufende Desktop-Instanz: Messquellen, Diagramme, Workspace, Geräteparameter (Rückkanal), Trace/Capture/Replay und Exporte. Verwende diesen Skill für die Bedienung und Diagnose über MCP, nicht für Änderungen an KymoStudios Quellcode."
 ---
 
 # KymoStudio über MCP bedienen
@@ -68,8 +68,26 @@ und vollständigen Capture-Abschluss. Textlogs sind ein zusätzlicher Prüfberei
 - **Rohdaten:** `kymo_samples` liefert höchstens 1.000 Zeilen. Nur bei vorhandenem
   `next_cursor` mit demselben `snapshot_id` weiterblättern; eine vollständige
   Antwort hat `snapshot_id: null`. Snapshots laufen nach 60 s ab, höchstens zwei
-  sind gleichzeitig gespeichert. Statistik und CSV beschreiben den begrenzten
-  Rohpuffer, nicht automatisch die gesamte Laufzeit oder persistente Langzeitlogs.
+  sind gleichzeitig gespeichert. Für Live-Signale beschreiben Statistik und CSV den
+  begrenzten Rohpuffer, nicht automatisch die gesamte Laufzeit.
+- **Messaufnahmen (ab KymoStudio 2.7):** Eine in der GUI geöffnete Aufnahme
+  (`.kymorec`) erscheint mit eigenen Signal-IDs (`rec<n>-…`, Anzeigename mit
+  „(Aufnahme)“). Für diese Signale lesen `kymo_samples` und `kymo_statistics` die
+  gesamte Aufnahme. Eine Messaufnahme starten, stoppen oder öffnen kann nur die GUI;
+  `kymo_capture_*` betrifft ausschließlich Trace-Aufzeichnungen.
+- **Geräteparameter (ab KymoStudio 2.7):** Firmware mit KymoCore 7.1 meldet ihre
+  Parameter (Name, Einheit, Grenzen); `kymo_parameters` liest sie samt Gerätewert
+  und Schreibstatus, `kymo_parameters_request` fragt die Liste neu an. Werte nur
+  schreiben, wenn der Auftrag es verlangt: Sie ändern sofort das Verhalten des
+  realen Geräts (Regler, Antrieb, Heizung). `kymo_parameter_set` prüft die Grenzen
+  vorab (`INVALID_ARGUMENT` bei Überschreitung) und liefert einen Job. **Ein Job mit
+  `state: succeeded` heißt nur, dass das Schreiben abgeschlossen ist;** ob das Gerät
+  den Wert übernommen hat, steht in `result.parameter.status`: `confirmed` (Gerät
+  meldet den Wert), `rejected` (Gerät behält einen anderen Wert, siehe `value`) oder
+  `unconfirmed` (keine Rückmeldung). Nur `confirmed` als Erfolg berichten.
+  `kymo_parameter_create` und `kymo_parameter_delete` gelten nur für manuell
+  angelegte Parameter (z. B. über CAN, wo die Firmware keine Liste melden kann);
+  vom Gerät gemeldete IDs lassen sich weder anlegen noch löschen.
 - **Trace:** Session über `kymo_trace_sessions` wählen, explizite `session_id`
   angeben. Analyse liest Auswahl; nur `kymo_trace_select` verändert sie.
   Unbekannte Clock-Metadaten als Ticks behandeln. Lücken/Unsicherheit und

@@ -1,6 +1,6 @@
 {
   "name": "kymostudio",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Bediene die laufende lokale KymoStudio-Instanz mit Vorrang für Messwerterfassung und Trace-Aufzeichnung.",
   "author": {
     "name": "Christof Seidel",

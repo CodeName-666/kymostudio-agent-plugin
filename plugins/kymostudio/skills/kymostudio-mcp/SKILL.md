@@ -1,6 +1,6 @@
 ---
 name: kymostudio-mcp
-description: "Konfiguriere lokale KymoStudio-MCP-Clients und bediene die laufende Desktop-Instanz: Messquellen, Diagramme, Workspace, Geräteparameter (Rückkanal), Trace/Capture/Replay und Exporte. Verwende diesen Skill für die Bedienung und Diagnose über MCP, nicht für Änderungen an KymoStudios Quellcode."
+description: "Konfiguriere lokale KymoStudio-MCP-Clients und bediene die laufende Desktop-Instanz: Messquellen, Diagramme, Workspace, Geräteparameter (Rückkanal), Messaufnahmen, Trace/Capture/Replay, Logs und Exporte. Verwende diesen Skill für die Bedienung und Diagnose über MCP, nicht für Änderungen an KymoStudios Quellcode."
 ---
 
 # KymoStudio über MCP bedienen
@@ -42,7 +42,8 @@ und vollständigen Capture-Abschluss. Textlogs sind ein zusätzlicher Prüfberei
   Zustand melden und abhängige Arbeit zurückstellen.
 - Live-Werte sparsam abfragen, gewöhnlich 1–2 Mal/s. Das Serverlimit von 20
   Requests/s gilt pro Desktop-Protokollprozess für alle Clients zusammen.
-- Eine angeforderte Aufzeichnung mit `kymo_capture_stop` beenden und ihren Job
+- Eine angeforderte Trace-Aufzeichnung mit `kymo_capture_stop`, eine Messaufnahme
+  mit `kymo_recording_stop` beenden und ihren Job
   bis zum tatsächlichen Abschluss verfolgen. Erst danach Quelle stoppen,
   analysieren oder exportieren. Aufnahme und Speicherung sind verschiedene Zustände.
   GUI und MCP können die Aufnahme des jeweils anderen Bedienwegs stoppen.
@@ -58,7 +59,7 @@ und vollständigen Capture-Abschluss. Textlogs sind ein zusätzlicher Prüfberei
   eingegangene Messwerte; Diagnostik und tatsächliche Signale prüfen.
 - **Diagramme:** Chart erstellen, Renderer-Job abwarten, numerische Signale
   zuordnen. Typen: `time_series`, `xy_line`, `xy_scatter`, `xyz_scatter`,
-  `runtime_trace`, `function_flow`. Trace-Charts verwenden eine Trace-Session,
+  `runtime_trace`, `function_flow`, `measurement`. Trace-Charts verwenden eine Trace-Session,
   keine numerischen Assignments. Typabhängige View-Parameter verwenden.
 - **Workspace:** `kymo_workspace_get` liefert Live-Zustand und Revision. Für
   vollständigen Ersatz frische `expected_revision` und `replace_existing: true`
@@ -70,11 +71,22 @@ und vollständigen Capture-Abschluss. Textlogs sind ein zusätzlicher Prüfberei
   Antwort hat `snapshot_id: null`. Snapshots laufen nach 60 s ab, höchstens zwei
   sind gleichzeitig gespeichert. Für Live-Signale beschreiben Statistik und CSV den
   begrenzten Rohpuffer, nicht automatisch die gesamte Laufzeit.
-- **Messaufnahmen (ab KymoStudio 2.7):** Eine in der GUI geöffnete Aufnahme
-  (`.kymorec`) erscheint mit eigenen Signal-IDs (`rec<n>-…`, Anzeigename mit
-  „(Aufnahme)“). Für diese Signale lesen `kymo_samples` und `kymo_statistics` die
-  gesamte Aufnahme. Eine Messaufnahme starten, stoppen oder öffnen kann nur die GUI;
+- **Messaufnahmen (ab KymoStudio 2.7):** `kymo_recordings` zeigt die laufende
+  Aufnahme und die geöffneten. `kymo_recording_start` mit einem `.kymorec`-Pfad in
+  einem freigegebenen Ordner nimmt alle verbundenen Capture-Quellen auf (keine
+  Testquellen); `kymo_recording_stop` liefert einen Job, erst nach `succeeded` ist
+  die Datei abgeschlossen. Eine laufende Aufnahme nur auf ausdrücklichen Wunsch
+  stoppen. `kymo_recording_open` (Job) lädt eine Aufnahme mit eigenen Signal-IDs
+  (`rec<n>-…`, Anzeigename mit „(Aufnahme)“); für diese Signale lesen `kymo_samples`
+  und `kymo_statistics` die gesamte Aufnahme. `kymo_recording_close` mit dem
+  `prefix` entlädt sie, die Datei bleibt. `kymo_recording_info` und
+  `kymo_recording_export` (CSV, optional `start`/`end`) sind Jobs.
   `kymo_capture_*` betrifft ausschließlich Trace-Aufzeichnungen.
+- **Diagnose:** `kymo_diagnostics` enthält Empfang, Verluste, Pufferfüllung, den
+  Aufnahmezustand und unter `display` die Bildrate des Hauptfensters (`fps`,
+  `max_gap_ms`); Diagramme rücken nur mit neuen Daten vor, langsame Quellen ergeben
+  eine niedrige Rate. `kymo_logs` liest das Ende von `app`, `hang`
+  (Hänger-Tracebacks), `mcp` oder `stderr`; Logs nur auszugsweise berichten.
 - **Geräteparameter (ab KymoStudio 2.7):** Firmware mit KymoCore 7.1 meldet ihre
   Parameter (Name, Einheit, Grenzen); `kymo_parameters` liest sie samt Gerätewert
   und Schreibstatus, `kymo_parameters_request` fragt die Liste neu an. Werte nur

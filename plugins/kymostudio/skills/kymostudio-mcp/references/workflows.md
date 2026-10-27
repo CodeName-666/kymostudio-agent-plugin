@@ -79,17 +79,51 @@ nicht als übernommen darstellen und nur auf Wunsch erneut senden. Für Firmware
 Selbstmeldung legt `kymo_parameter_create` einen Parameter mit eigener ID,
 Name, Einheit und Grenzen an; die Firmware prüft trotzdem jeden Wert.
 
-## Geöffnete Messaufnahme auswerten
+## Messaufnahme starten und beenden (ab KymoStudio 2.7)
 
 ```text
-kymo_signals({})
-# Aufnahme-Signale haben IDs wie rec1-<Quelle>_<n> und „(Aufnahme)“ im Namen.
+kymo_connections({})
+# Mindestens eine Quelle muss verbunden sein; Testquellen werden nicht aufgenommen.
+kymo_recording_start({"path":"<freigegebener Ordner>/lauf-001.kymorec"})
+kymo_recordings({})
+# Während der Aufnahme: data.recording.samples, error, remainingSeconds beobachten.
+kymo_recording_stop({})
+kymo_job_get({"job_id":"<Stopjob>"})
+# succeeded: data.job.result enthält path und samples.
+```
+
+Der Pfad ist ein Ordner und darf noch nicht existieren. Die Werte stehen schon
+während der Aufnahme in den Dateien; abgeschlossen ist sie erst nach dem Stopjob.
+
+## Messaufnahme öffnen und auswerten
+
+```text
+kymo_recording_info({"path":"<freigegebener Ordner>/lauf-001.kymorec"})
+kymo_job_get({"job_id":"<Infojob>"})
+kymo_recording_open({"path":"<freigegebener Ordner>/lauf-001.kymorec"})
+kymo_job_get({"job_id":"<Öffnenjob>"})
+# data.job.result.recording.prefix z. B. "rec1-", Signale wie rec1-<Quelle>_<n>.
 kymo_statistics({"signal_id":"rec1-<Quelle>_0"})
 kymo_samples({"signal_id":"rec1-<Quelle>_0","start":10.0,"end":11.0,"limit":1000})
+kymo_recording_export({"path":"<freigegebener Ordner>/lauf-001.kymorec","target":"<freigegebener Ordner>/lauf-001.csv"})
+kymo_job_get({"job_id":"<Exportjob>"})
+kymo_recording_close({"prefix":"rec1-"})
 ```
 
 Die Statistik eines Aufnahme-Signals umfasst die gesamte Aufnahme. Große
 Bereiche als CSV exportieren statt seitenweise in den Kontext zu laden.
+
+## Hänger oder Ruckeln untersuchen
+
+```text
+kymo_diagnostics({})
+# data.diagnostics.display: fps und max_gap_ms der letzten 5 s.
+kymo_logs({"name":"hang","lines":50})
+kymo_logs({"name":"app","lines":100})
+```
+
+Eine niedrige Bildrate bei langsamen Quellen ist erwartet; erst lange Lücken
+bei schnellen Daten oder neue Einträge im Hänger-Log deuten auf ein Problem.
 
 ## Workspace und Replay
 
@@ -115,3 +149,4 @@ und `state.eof` prüfen.
 - „Analysiere den gespeicherten Trace und zeige Lücken oder unbekannte Clock-Domänen ausdrücklich.“
 - „Setze kp meines PI-Reglers auf 1.5 und berichte, ob das Gerät den Wert bestätigt.“
 - „Werte die geöffnete Messaufnahme aus: Mittelwert und RMS je Signal über die gesamte Aufnahme.“
+- „Stoppe die laufende Messaufnahme und prüfe, ob sie vollständig gespeichert ist.“

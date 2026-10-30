@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Verify distribution and client setup without application or extra dependencies."""
 import importlib.util
 import json
@@ -154,7 +154,7 @@ class RepositoryTests(unittest.TestCase):
                      for name in ('plugin.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json')]
         self.assertEqual({item['name'] for item in manifests}, {'kymostudio'})
         self.assertEqual(len({item['version'] for item in manifests}), 1)
-        self.assertEqual({item['license'] for item in manifests}, {'GPL-3.0-only'})
+        self.assertEqual({item['license'] for item in manifests}, {'MIT'})
         for path in ('.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json'):
             data = json.loads((ROOT / path).read_text(encoding='utf-8'))
             self.assertEqual(data['name'], 'kymostudio-agent-plugin')

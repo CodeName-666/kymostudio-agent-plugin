@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Catch concrete directory-package regressions without claiming portal approval."""
 import importlib.util
 import json

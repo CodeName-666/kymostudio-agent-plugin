@@ -24,7 +24,7 @@
       "Export retained samples to my granted local folder."
     ]
   },
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "homepage": "https://github.com/CodeName-666/kymostudio-agent-plugin",
   "repository": "https://github.com/CodeName-666/kymostudio-agent-plugin",
   "author": {

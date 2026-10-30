@@ -14,7 +14,7 @@ Verzeichnis sind getrennte Nachweise.
   Produktlogo, Startprompts und Verzeichnisbeschreibung.
 - Kurzer OpenAI-Untertext innerhalb von 30 Zeichen; relative Iconpfade und
   ein quadratisches SVG mit 64 × 64 Pixeln.
-- Paketinterne README, GPL-Lizenz, Datenschutzbeschreibung und Supportkontakt.
+- Paketinterne README, MIT-Lizenz, Datenschutzbeschreibung und Supportkontakt.
 - [Formularwerte und Datenfluss](submission.json),
   [Reviewer-Ablauf und Prüffälle](REVIEW.md),
   [Vorab-Anfragen](PROVIDER-INQUIRIES.md).

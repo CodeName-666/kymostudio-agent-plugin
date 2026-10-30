@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 # Copyright (c) 2026 Christof Seidel
 """Create a portable release or a recipient's local MCP client kit."""
 import argparse

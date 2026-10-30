@@ -17,7 +17,7 @@ does not assume any installation path or contain a credential.
 [Installation](https://github.com/CodeName-666/kymostudio-agent-plugin/blob/main/docs/INSTALLATION.md)
 and [repository](https://github.com/CodeName-666/kymostudio-agent-plugin).
 
-GPL-3.0-only; see `LICENSE`. The desktop application is distributed separately.
+MIT; see `LICENSE`. The desktop application is distributed separately.
 
 [Privacy and data handling](PRIVACY.md) · [Support](SUPPORT.md).
 Maintainer: Christof Seidel, kontakt@kymotrace.de.

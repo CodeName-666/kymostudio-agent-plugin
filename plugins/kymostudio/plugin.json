@@ -8,7 +8,7 @@
     "email": "kontakt@kymotrace.de",
     "url": "https://github.com/CodeName-666"
   },
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "extensions": {
     "com.openai": {
       "interface": {

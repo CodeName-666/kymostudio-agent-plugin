@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Check published package constraints; provider eligibility/review remains separate."""
 import argparse
 import json

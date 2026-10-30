@@ -112,7 +112,7 @@ The published plugin is for local desktop clients. Its installation does not
 publish the desktop server on the Internet or constitute a listing in either
 vendor's official public plugin directory.
 
-Plugin, helper and documentation: **GPL-3.0-only**, see [LICENSE](LICENSE).
+Plugin, helper and documentation: **MIT**, see [LICENSE](LICENSE).
 KymoStudio's application/installer is distributed separately under its own terms.
 This project is maintained by Christof Seidel and is not an official Anthropic
 or OpenAI product.
